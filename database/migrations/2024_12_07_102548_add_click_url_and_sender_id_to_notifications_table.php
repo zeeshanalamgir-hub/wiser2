@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('notifications', function (Blueprint $table) {
+            $table->unsignedBigInteger('sender_id')->nullable()->after('notifiable_type'); // Add sender_id column
+            $table->text('click_url')->nullable()->after('data'); // Add click_url column
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('notifications', function (Blueprint $table) {
+            $table->dropColumn('sender_id');
+            $table->dropColumn('click_url');
+        });
+    }
+};

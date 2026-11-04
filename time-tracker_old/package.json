@@ -1,0 +1,57 @@
+{
+  "name": "wiserlance",
+  "productName": "Wiserlance",
+  "version": "0.0.0",
+  "description": "wiserlance",
+  "main": "src/main.js",
+  "author": "wiserlance",
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "cross-env NODE_ENV=development electron .",
+    "uat": "electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder --win --mac --linux"
+  },
+  "build": {
+    "appId": "com.wiserlance.timetracker",
+    "asar": true,
+    "icon": "desktopIcon.png",
+    "extraResources": [
+      {
+        "from": "trayIcon.png",
+        "to": "trayIcon.png"
+      }
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "msi"
+      ]
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Utility"
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.9",
+    "node-fetch": "^3.0.0",
+    "sharp": "^0.33.5",
+    "uiohook-napi": "^1.5.4"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^40.6.0",
+    "electron-builder": "^25.1.8"
+  }
+}

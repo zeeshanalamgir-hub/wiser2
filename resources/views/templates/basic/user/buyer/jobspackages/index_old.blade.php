@@ -1,0 +1,118 @@
+@extends($activeTemplate.'layouts.master')
+@section('content')
+<section class="all-sections ptb-60">
+    <div class="container-fluid">
+        <div class="section-wrapper">
+          
+            <div class="row justify-content-center mb-30-none">
+                
+                
+                <div class="col-xl-9 col-lg-12 mb-30">
+               
+                    <div class="dashboard-sidebar-open"><i class="las la-bars"></i> @lang('Menu')</div>
+                    <div class="dashboard-section">
+                        <div class="row justify-content-center mb-30-none">
+                            <div class="col-md-12 text-center">
+                                <h3>Freelancer Bids Packages</h3>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="mt-1"></h4>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-12 border">
+                                        <h4 class="text-info">Type</h4>
+                                    </div>
+                                    <div class="col-md-12 border">
+                                        <h4 class="text-info">Jobs</h4>
+                                    </div>
+                                    <div class="col-md-12 border">
+                                        <h4 class="text-info">Price</h4>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            @foreach ($jobspakages as $key=>$m)
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-md-12 border">
+                                        <h4 class="text-danger">{{$m->title}}</h4>
+                                    </div>
+                                    <div class="col-md-12 border">
+                                        <h4 class="">
+                                            @if ($m->type == 2)
+                                            Featured
+                                            @elseif($m->type == 1)
+                                            Priority
+                                            @else
+                                                Normal    
+                                            @endif
+                                        </h4>
+                                    </div>
+                                   
+                                    <div class="col-md-12 border">
+                                        <h4>{{$m->jobs}}</h4>
+                                    </div>
+                                    <div class="col-md-12 border">
+                                        <h4>${{$m->price}}</h4>
+                                    </div>
+                                        <a href="{{url('/user/buyer/jobspayment?id='.$m->id)}}"><button class="btn btn-success mt-1 mb-1">Get</button></a>
+                                    
+                                
+                                    </div>
+                                  
+                                </div>
+                            
+                            @endforeach
+                         
+
+             
+                        
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+   
+<div id="detailModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="ModalLabel">@lang('Details')</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="withdraw-detail"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn--danger btn-rounded text-white" data-bs-dismiss="modal">@lang('Close')</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+
+
+@push('script')
+    <script>
+        (function($){
+            "use strict";
+            $('.approveBtn').on('click', function() {
+                var modal = $('#detailModal');
+                var feedback = $(this).data('admin_feedback');
+                modal.find('.withdraw-detail').html(`<p> ${feedback} </p>`);
+                modal.modal('show');
+            });
+        })(jQuery);
+
+    </script>
+@endpush

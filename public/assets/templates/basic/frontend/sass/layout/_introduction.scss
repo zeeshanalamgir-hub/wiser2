@@ -1,0 +1,43 @@
+.banner-section{
+    padding-top: 80px;
+    padding-bottom: 80px;
+    @media only screen and (max-width: 991px) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .banner-content{
+        .title{
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+    }
+}
+.breadcrumb{
+    background-color: transparent;
+    padding: 0;
+    justify-content: center;
+}
+.breadcrumb li{
+    font-family: $font_heading;
+}
+.breadcrumb-item a{
+    font-weight: 600;
+    font-size: 14px;
+    position: relative;
+    z-index: 2;
+    color: $text--base;
+}
+.breadcrumb-item.active{
+    font-weight: 600;
+    color: $color__text;
+    font-size: 14px;
+    position: relative;
+    z-index: 2;
+}
+.breadcrumb-item.active::before{
+    content: "/";
+    font-weight: 600;
+    color: $text--base;
+    font-size: 14px;
+    left: 0;
+}

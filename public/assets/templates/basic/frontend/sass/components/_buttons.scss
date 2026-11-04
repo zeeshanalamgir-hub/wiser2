@@ -1,0 +1,174 @@
+/*-------------------------------------------------
+    [ ## Buttons ]
+*/
+input[type="button"] {
+	@extend button;
+}
+input[type="reset"] {
+	@extend button;
+}
+input[type="submit"] {
+	@extend button;
+	&:hover {
+		color: $white;
+	}
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	cursor: pointer;
+	-webkit-appearance: button;
+	&:focus {
+		outline: none;
+	}	
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+.btn {
+    -webkit-transition: all 0.3s ease 0.02s;
+    transition: all 0.3s ease 0.02s;
+}
+.btn:active,
+.btn:focus {
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.125) inset;
+}
+.btn {
+    border: 0px solid;
+    border-radius: 0px;
+    font-weight: 500;
+    font-size: 16px;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    @media only screen and (max-width: 767px) {
+        font-size: 14px;
+    }
+}
+.btn-rounded{
+    border-radius: 3px;
+}
+.btn-capsule{
+    border-radius: 100px;
+}
+/*-------------------------------------------------
+    [ ## custom btn ]
+*/
+.btn--primary{
+    background-color: #7367f0;
+}
+.btn--secondary {
+    background-color: #868e96;
+}
+.btn--success {
+    background-color: #28c76f;
+}
+.btn--danger {
+    background-color: #ea5455;
+}
+.btn--warning {
+    background-color: #ff9f43;
+}
+.btn--info {
+    background-color: #1e9ff2;
+}
+.btn--dark {
+    background-color: #10163A;
+}
+.badge--primary{
+    background-color: #7367f0;
+}
+.badge--secondary {
+    background-color: #868e96;
+}
+.badge--success {
+    background-color: #28c76f;
+}
+.badge--danger {
+    background-color: #ea5455;
+}
+.badge--warning {
+    background-color: #ff9f43;
+}
+.badge--info {
+    background-color: #1e9ff2;
+}
+.badge--dark {
+    background-color: #10163A;
+}
+.border--primary{
+    border: 1px solid #7367f0;
+}
+.border--secondary {
+    border: 1px solid #868e96;
+}
+.border--success {
+    border: 1px solid #28c76f;
+}
+.border--danger {
+    border: 1px solid #ea5455;
+}
+.border--warning {
+    border: 1px solid #ff9f43;
+}
+.border--info {
+    border: 1px solid #1e9ff2;
+}
+.border--dark {
+    border: 1px solid #10163A;
+}
+.btn--base {
+    position: relative;
+    background: #2cdd9b;
+    background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#2cdd9b), to(#1dc8cc));
+    background: -webkit-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+    background: -o-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+    background: linear-gradient(to right, rgb(44,221,155) 0%, rgb(29,200,204) 100%);
+    color: $white;
+    text-align: center;
+    padding: 6px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 3px;
+    z-index: 2;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+    &.active{
+        background: transparent;
+        color: $color__text;
+        border: 1px solid $border--base;
+        &:focus,
+        &:hover {
+            background: #2cdd9b;
+            background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
+            background: -webkit-gradient(linear, left top, right top, from(#2cdd9b), to(#1dc8cc));
+            background: -webkit-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+            background: -o-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+            background: linear-gradient(to right, rgb(44,221,155) 0%, rgb(29,200,204) 100%);
+            border: 1px solid $bg--base;
+            box-shadow: none;
+        }
+    }
+    &:focus,
+    &:hover {
+        color: $white;
+        box-shadow: 0 10px 20px rgba(46,204,113,.4);
+    }
+    @media only screen and (max-width: 575px) {
+        padding: 6px 20px;
+        font-size: 14px;
+    }
+}
+.custom-btn{
+    color: $text--base;
+    font-weight: 500;
+    font-size: 13px;
+    display: block;
+    &:hover{
+        color: $text--base;
+    }
+}

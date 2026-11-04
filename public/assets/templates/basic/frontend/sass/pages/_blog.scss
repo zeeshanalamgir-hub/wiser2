@@ -1,0 +1,152 @@
+/*--------------------------------------------------------------
+# Blog-block
+--------------------------------------------------------------*/
+.blog-item{
+    border: 1px solid $border--base;
+    border-radius: 3px;
+    padding: 10px;
+    transition: all 0.3s;
+    &:hover{
+        transform: translateY(-7px);
+    }
+}
+.blog-thumb{
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    img{
+        display: block;
+        width: 100%;
+        @media only screen and (max-width: 991px) {
+            height: auto;
+        }
+    }
+    &::after{
+        position: absolute;
+        content: "";
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: -8px;
+        width: 0;
+        height: 0;
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+        border-bottom: 14px solid $white;
+    }
+    .blog-date{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 60px;
+        background: #2cdd9b;
+        background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
+        background: -webkit-gradient(linear, left top, right top, from(#2cdd9b), to(#1dc8cc));
+        background: -webkit-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+        background: -o-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+        background: linear-gradient(to right, rgb(44,221,155) 0%, rgb(29,200,204) 100%);
+        padding: 5px 0;
+        border-radius: 3px;
+        .title{
+            font-size: 18px;
+            color: $white;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+        .sub-title{
+            font-size: 13px;
+            width: 100%;
+            display: block;
+            color: $white;
+            font-weight: 500;
+        }
+    }
+}
+.blog-content-inner{
+    background-color: $white;
+    padding: 20px 10px 10px 10px;
+    .title{
+        font-size: 18px;
+        font-weight: 600;
+        a{
+            transition: all 0.3s;
+            &:hover{
+                color: $text--base;
+            }
+        }
+    }
+    p{
+        font-size: 14px;
+    }
+}
+.blog-btn{
+    a{
+        font-size: 13px;
+        padding: 5px 15px;
+    }
+}
+.blog-details-section{
+    .blog-thumb{
+        img{
+            height: auto;
+        }
+    }
+    .blog-content-inner{
+        .title{
+            font-size: 24px;
+            @media only screen and (max-width: 991px) {
+                font-size: 20px;
+            }
+        }
+        p{
+            font-size: 15px;
+        }
+    }
+    .blog-item-area{
+        border-right: 1px solid $border--base;
+        padding-right: 30px;
+    }
+}
+.blog-social-area{
+    border: 1px solid $border--base;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 3px;
+    .title{
+        margin-bottom: 0;
+        font-size: 18px;
+        @media only screen and (max-width: 991px) {
+            margin-bottom: 10px;
+        }
+    }
+    .blog-social{
+        li{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid $border--base;
+            text-align: center;
+            font-size: 14px;
+            border-radius: 3px;
+            transition: all 0.3s;
+            &:hover{
+                background: #2cdd9b;
+                background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
+                background: -webkit-gradient(linear, left top, right top, from(#2cdd9b), to(#1dc8cc));
+                background: -webkit-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+                background: -o-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+                background: linear-gradient(to right, rgb(44,221,155) 0%, rgb(29,200,204) 100%);
+                color: $white;
+                border: 1px solid $bg--base;
+            }
+        }
+        li+li{
+            margin-left: 5px;
+        }
+    }
+}
+.sidebar{
+    position: sticky;
+    top: 10%;
+}

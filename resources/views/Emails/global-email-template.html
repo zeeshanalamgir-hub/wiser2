@@ -1,0 +1,118 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wiserlance - Email Template </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- Custom CSS -->
+<link href="styles.css" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+    }
+
+    table {
+        border-spacing: 0;
+    }
+
+    td {
+        padding: 0;
+    }
+
+    img {
+        border: 0;
+    }
+
+    .wraper {
+        width: 100%;
+        table-layout: fixed;
+        background: #F7F7F7;
+        padding-bottom: 20px;
+    }
+
+    .main {
+        background-color: #fff;
+        width: 100%;
+        margin: 0 auto;
+        max-width: 626px;
+        font-family: sans-serif;
+        color: #171a1b;
+    }
+
+    .two-columns {
+        text-align: center;
+        font-size: 0;
+    }
+
+    .two-columns .column {
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
+        display: inline-block;
+        vertical-align: top;
+    }
+</style>
+<!-- Fonts Awesom -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+</head>
+
+
+<center class="wraper">
+    <table class="main" width="100%">
+        <tr>
+            <td height="50" style="background-color:#003F45; padding:10px;">
+
+                <table width="100%">
+                    <tr>
+                        <td class="two-columns">
+
+                            <table class="column">
+
+                                <tr>
+                                    <td width="300">
+                                        <a href="https://wiserlance.com"><img
+                                                src="https://wiserlance.com/img/logo-wiserlance.svg"
+                                                title="Wiserlance Logo" alt="Wiserlance Logo" width="170"></a>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            <table class="column">
+                                <tr>
+                                    <td class="fs-5 text-center pt-1" height="30" width="300">
+                                        <a href="https://wiserlance.com" class="links-c me-2"> <i
+                                                class="fab fa-facebook-square"></i></a>
+                                        <a href="https://wiserlance.com" class="links-c me-2"> <i
+                                                class="fab fa-linkedin"></i> </a>
+                                        <a href="https://wiserlance.com" class="links-c me-2"> <i
+                                                class="fab fa-twitter-square"></i> </a>
+                                        <a href="https://wiserlance.com" class="links-c me-2"> <i
+                                                class="fab fa-instagram"></i> </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        <tr>
+        <tr>
+            <td class="p-4 p-lg-5">
+                <p>Hi {{fullname}} ({{username}}),</p>
+                <p>{{message}}</p>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td height="8" style="background-color:#003F45;">
+
+            </td>
+        </tr>
+
+
+
+    </table>
+
+</center>

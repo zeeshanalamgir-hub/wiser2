@@ -1,0 +1,71 @@
+/.phpunit.cache
+/node_modules
+/public/build
+/public/hot
+
+# Ignore all public by default
+/public/*
+
+# ✅ Allow ONLY templates inside assets
+!/public/assets/
+/public/assets/*
+!/public/assets/templates/
+!/public/assets/templates/**
+
+# ✅ Allow CSS & JS folders
+!/public/css/
+!/public/css/**
+
+!/public/js/
+!/public/js/**
+
+# Allow specific files if needed
+!/public/mix-manifest.json
+
+/storage/*.key
+/vendor
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
+
+# Ignore images (optional)
+*.jpg
+*.png
+*.jpeg
+*.jfif
+
+*.zip
+
+public/Wiserlance-0.0.0.exe
+public/Wiserlance-0.0.0-arm64.dmg
+
+.DS_Store
+app/.DS_Store
+bootstrap/.DS_Store
+database/.DS_Store
+public/.DS_Store
+public/storage
+resources/.DS_Store
+routes/.DS_Store
+storage/.DS_Store
+tests/.DS_Store
+public/js/app.js
+public/js/app.js.LICENSE.txt
+
+# Local secrets / data dumps — never commit
+/APP_NAME=Laravel
+/.env copy
+.env.*
+!.env.example
+/sendgridtest.php
+/DB SQL/
+*.sql

@@ -1,0 +1,74 @@
+.lager-forms-outer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.main-title-heading-66 {
+    color: black;
+}
+
+
+.racket-forms-outer{
+    background: #ffffff;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.racket-forms-header {
+    background: #f0f0f0;
+}
+.racket-forms-header .racket-form-heading {
+    padding: 8px;
+    text-transform: uppercase;
+    color: #003F45;
+}
+
+.racket-form-body-section{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.racket-form-body-section-heading {
+
+}
+
+.racket-forms-body .form-group{
+    margin-bottom: 0;
+}
+
+.racket-forms-body .form-group input{
+    border-radius: 3px !important;
+    border: 2px solid #9B9B9B;
+}
+.racket-forms-body .form-group select{
+    border-radius: 3px !important;
+    border: 2px solid #9B9B9B;
+}
+
+.racket-forms-text-area {
+    border-radius: 3px;
+    border: 2px solid #9B9B9B;
+}
+
+.racket-attachment-box-outer {
+    border-radius: 3px;
+    border: 2px solid #00C535;
+    padding: 4px 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.racket-attachment-file-icon img{
+    height: 30px;
+}
+
+

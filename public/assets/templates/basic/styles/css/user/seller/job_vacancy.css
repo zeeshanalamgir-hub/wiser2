@@ -1,0 +1,71 @@
+.racket-job-vacancy-view-tabs {
+    margin-top: 16px;
+}
+
+.bid-arrow-back-789678 {
+    font-size: 12px;
+    opacity: 0.5;
+    margin-right: 8px;
+}
+
+.buyer-bit-detail-view-section-6789565, .seller-bit-detail-view-section-6789565 {
+    width: 100%;
+    height: 100px;
+    background: rgba(155, 212, 177, 0.5);
+}
+
+.cover-letter-details-outer-76755 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 8px;
+}
+.letter-section-7895 {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 6px;
+
+}
+
+.letter-section-7895 textarea {
+    border-radius: 6px;
+    border: 3px solid #9B9B9B;
+}
+
+.line-item-section-7895 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid #CACACA;
+    padding-bottom: 6px;
+}
+
+.cover-letter-details-footer-76755 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.action-buttons-789565 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-buttons-789565 .edit-bit-btn{
+    cursor: pointer;
+}
+
+.action-buttons-789565 .view-job-btn{
+    cursor: pointer;
+}
+
+

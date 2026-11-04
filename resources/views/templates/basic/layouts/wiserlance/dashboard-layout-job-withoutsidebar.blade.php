@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user-id" content="{{ auth()->id() }}">
+    {{-- Meta tags --}}
+    @if (isset($id))
+        <meta name="id" content="{{ $id }}">
+    @endif
+
+    @if (isset($messengerColor))
+        <meta name="messenger-color" content="{{ $messengerColor }}">
+    @endif
+
+    @if (isset($dark_mode))
+        <meta name="messenger-theme" content="{{ $dark_mode }}">
+    @endif
+
+    @if (Auth::check())
+        <meta name="url" content="{{ url('') . '/' . config('chatify.routes.prefix') }}"
+            data-user="{{ Auth::user()->id }}">
+    @endif
+    <title>Wiserlance - Hiring </title>
+    <link href="{{ asset('assets/wiserlance/assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ asset('assets/wiserlance/assets/css/custom-styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/wiserlance/assets/css/jquery.datetimepicker.min.css') }}" rel="stylesheet">
+    <!-- Fonts Awesom -->
+    <link href="{{ asset('assets/wiserlance/assets/css/all.min.css') }}" rel="stylesheet">
+    <link rel='stylesheet' href='https://unpkg.com/nprogress@0.2.0/nprogress.css' />
+
+    <script src="{{ asset('assets/wiserlance/assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/wiserlance/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/wiserlance/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/wiserlance/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/wiserlance/assets/js/slick.js') }}"></script>
+    <script src="{{ asset('assets/wiserlance/assets/js/slider-bg.js') }}"></script>
+    <script src="{{ asset('assets/wiserlance/assets/js/smoothproducts.js') }}"></script>
+    <script src="{{ asset('assets/wiserlance/assets/js/snackbar.min.js') }}"></script>
+    <script src="{{ asset('assets/wiserlance/assets/js/jQuery.style.switcher.js') }}"></script>
+    <script src="{{ asset('assets/wiserlance/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/templates/basic/scripts/js/data-ajax.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js">
+    </script>
+    <script>
+        function loadAjaxContent(url, tabText = null) {
+            if (tabText) {
+                $('#current-breadcrumb').text(tabText);
+            }
+            fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    const contentDiv = document.getElementById('ajax-content');
+                    contentDiv.innerHTML = html;
+
+                    const scripts = contentDiv.querySelectorAll('script');
+                    scripts.forEach(script => {
+                        const newScript = document.createElement('script');
+                        if (script.src) {
+                            newScript.src = script.src;
+                        } else {
+                            newScript.text = script.innerHTML;
+                        }
+                        document.body.appendChild(newScript);
+                    });
+                    // Re-initialize Chatify after AJAX load
+                    // if (typeof Chatify !== 'undefined' && typeof Chatify.initialize === 'function') {
+                    //     Chatify.initialize();
+                    //     console.log('Chatify re-initialized after AJAX load');
+                    // } else {
+                    //     console.error('Chatify is not defined or missing initialization function.');
+                    // }
+                })
+                .catch(error => console.error('Error loading content:', error));
+        }
+        window.addEventListener('popstate', function(event) {
+            const url = document.location.href;
+
+            // Reload the content based on the current URL
+            loadAjaxContent(url);
+        });
+
+        function updateBrowserUrl(url) {
+            if (history.pushState) {
+                window.history.pushState({
+                    path: url
+                }, '', url);
+            } else {
+                console.warn('Browser does not support history.pushState');
+            }
+        }
+
+        function initializeAjaxLinks() {
+            console.log("custom-ajax-link initializeAjaxLinks called");
+
+            // Event delegation for dynamically generated elements
+            document.body.addEventListener('click', function(e) {
+                const target = e.target;
+
+                if (target.classList.contains('custom-ajax-link')) {
+                    e.preventDefault();
+
+                    // Update active state for tabs
+                    document.querySelectorAll('.custom-ajax-link').forEach(link => {
+                        link.classList.remove('active', 'text-green');
+                    });
+                    target.classList.add('active', 'text-green');
+
+                    // Load the content
+                    const url = target.getAttribute('data-url');
+                    //console.log(url);
+                    const tabText = target.textContent.trim();
+                    updateBrowserUrl(url);
+                    loadAjaxContent(url, tabText);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAjaxLinks();
+
+        });
+
+        $('.contractBtn').on('click', function() {
+            var modal = $('#contractModal');
+            modal.find('input[name=buyer_id]').val($(this).data('buyer_id'))
+            modal.find('input[name=seller_id]').val($(this).data('seller_id'))
+            modal.modal('show');
+        });
+    </script>
+</head>
+
+<body class="bg-light">
+
+    <div id="google_translate_element" style="display:none !important;"></div>
+
+    {{-- Loader Overlay (must be direct child of body, outside main) --}}
+    <div id="translateLoader"
+        style="display:none; position:fixed; inset:0; z-index:99999; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); background:rgba(0,0,0,0.35); align-items:center; justify-content:center; flex-direction:column; gap:16px;">
+        <div
+            style="width:52px; height:52px; border:4px solid rgba(255,255,255,0.2); border-top-color:#fff; border-radius:50%; animation:spin 0.8s linear infinite;">
+        </div>
+        <p style="color:#fff; font-size:15px; margin:0; letter-spacing:0.4px;">Translating page...</p>
+    </div>
+
+    <style>
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .goog-te-banner-frame,
+        .VIpgJd-ZVi9od-ORHb,
+        .skiptranslate {
+            display: none !important;
+        }
+
+        body {
+            top: 0 !important;
+            position: static !important;
+        }
+    </style>
+
+
+    @include('partials.notify')
+    <div class="preloader"></div>
+    @include('templates.basic.partials.new_header')
+
+    {{-- @include('templates.basic.header_new') --}}
+    {{--  @include('dashboard-layout-job-withoutsidebar')  --}}
+    <div class="container">
+        <div class="row">
+            <div id="breadcrumb">
+                @include('components.breadcrumbs')
+            </div>
+            @yield('content')
+        </div>
+    </div>
+    @include('templates.basic.partials.new_footer')
+
+    {{-- @include('templates.basic.footer_new') --}}
+    {{--  @include('templates.basic.partials.wiserlance.footer-dashboard')  --}}
+
+
+    @if (isset($scripts))
+        @foreach ($scripts as $script)
+            <script src="{{ asset($script) }}?v={{ file_exists(public_path($script)) ? filemtime(public_path($script)) : time() }}"></script>
+        @endforeach
+    @endif
+    @yield('script')
+    <script>
+        var toggle = document.getElementById("toggle");
+        var content = document.getElementById("content");
+        var body = document.getElementById("body");
+        var close = document.getElementById("close");
+        if (toggle) {
+            toggle.addEventListener("click", function() {
+                content.classList.toggle("sidebar");
+                body.classList.toggle("body");
+            });
+        }
+    </script>
+    {{-- <script src="{{ asset('assets/templates/basic/scripts/js/user/buyer/job_list.js') }}"></script> --}}
+    <script>
+        $(document).ready(function() {
+            // Use event delegation to handle clicks on dynamically loaded content
+            $(document).on('click', '.ajax-link', function(e) {
+                e.preventDefault();
+                var url = $(this).data('url');
+                $('.ajax-link').parent().removeClass('active');
+                $(this).parent().addClass('active');
+
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function(response) {
+                        console.log(response.breadcrumbs);
+                        if (response.breadcrumbs) {
+                            $('#breadcrumb').html(response.breadcrumbs); // Update breadcrumbs
+                        }
+
+                        if (response.html) {
+                            $('#main-content').html(response.html);
+                        } else
+                            $('#main-content').html(response);
+
+
+                        if (history.pushState) {
+                            window.history.pushState({
+                                path: url
+                            }, '', url);
+                        }
+                        reloadActiveTab();
+                        if (typeof initializeTabs === 'function') {
+                            initializeTabs();
+                        } else {
+                            console.log('initializeTabs function not found!');
+                        }
+                    },
+                    error: function(xhr) {
+                        console.log("An error occurred: " + xhr.status + " " + xhr.statusText);
+                    }
+                });
+            });
+
+            function reloadActiveTab() {
+                let activeTab = $('.job-tab-buttons .btn-success'); // Find the currently active tab
+                if (activeTab.length) {
+                    let url = activeTab.data('url');
+                    let target = activeTab.data('target');
+                    let pageTitle = activeTab.data('page-title');
+                    fetchAndUpdateContent(url, target, null, pageTitle);
+                } else {
+                    console.log("No active tab found!");
+                }
+            }
+            //reloadActiveTab();
+        });
+    </script>
+    <script src="{{ asset('js/chatify/autosize.js') }}"></script>
+    @if (app()->environment('local'))
+        <script src="{{ mix('js/app.js') }}"></script>
+    @else
+        <script src="/js/app.js"></script>
+    @endif
+    <script src='https://unpkg.com/nprogress@0.2.0/nprogress.js'></script>
+    {{-- @include('Chatify::layouts.modals') --}}
+    @include('Chatify::layouts.footerLinks')
+
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ar,ur,en,fr,de',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function showLoader() {
+            document.getElementById('translateLoader').style.display = 'flex';
+        }
+
+        function hideLoader() {
+            document.getElementById('translateLoader').style.display = 'none';
+        }
+
+        function translatePage(lang) {
+            showLoader();
+
+            var select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            }
+
+            var minTime = 3000;
+            var start = Date.now();
+
+            var observer = new MutationObserver(function() {
+                var elapsed = Date.now() - start;
+                var remaining = Math.max(0, minTime - elapsed);
+                setTimeout(hideLoader, remaining);
+                observer.disconnect();
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
+
+            setTimeout(hideLoader, 5000);
+        }
+
+        $(document).on('change', '#languageSelect', function() {
+            var selectedLang = $(this).val();
+            translatePage(selectedLang);
+        });
+    </script>
+
+    <script type="text/javascript" src="{{ asset('js/google_translater.js') }}"></script>
+
+</body>
+
+</html>

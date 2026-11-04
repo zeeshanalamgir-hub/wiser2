@@ -1,0 +1,187 @@
+.inverse-white-bg-to-transparent{
+    /* background: blue !important; */
+}
+
+
+
+
+
+.nav-tabs .nav-item {
+    width: auto;
+}
+
+.input-pricing {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 40px !important;
+    padding: 6px 15px;
+    font-size: 15px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+}
+
+.nav-link {
+    display: block;
+    padding: .6rem .6rem;
+    background: #F1FDF7;
+    font-weight: 500;
+    font-size: 14px;
+    margin-right: 0.8rem;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid transparent !important;
+}
+
+.nav-tabs .nav-link {
+    text-align: center;
+    color: #003F45 !important;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: #f0f0f0;
+    font-family: afacad;
+    font-size: 12px !important;
+    padding: 4px 8px;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    border: 1px solid #003F45;
+    background: #f0f0f0;
+    color: #003F45 !important;
+    cursor: pointer;
+}
+
+.nav-tabs .nav-link.active {
+    border-color: #003F45;
+    border: 1px solid #003F45;
+    background: #f0f0f0;
+    color: #003F45 !important;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+    outline: none;
+}
+
+.nav-tabs.simple_tab_links .nav-link {
+    margin: 0 5px;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.6;
+    text-transform: uppercase;
+}
+
+.nav-tabs.simple_tab_links .nav-link:hover,
+.nav-tabs.simple_tab_links .nav-link:focus {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.nav-tabs.simple_tab_links .nav-link.active {
+    color: #000000;
+    background: transparent;
+    border-bottom: 2px dashed black;
+    opacity: 1;
+}
+
+.custom-select {
+    /* Add your styles here */
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+    /* Adjust width as needed */
+}
+
+/* Style for the options */
+.custom-select option {
+    /* Add your styles here */
+    background-color: #fff;
+    color: #333;
+    padding: 8px;
+}
+
+/* Style for selected option */
+.custom-select option:checked {
+    /* Add your styles here */
+    background-color: #007bff;
+    color: #fff;
+}
+
+.file-upload-text-center-5432534 {
+    font-size: 24px;
+}
+
+.file-upload-text-center-5432534 .green-5435234 {
+    color: var(--secondary-color);
+}
+
+.form-responsive-98523 {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px
+}
+
+.form-responsive-heading-98563 {
+    width: 100%;
+}
+
+.form-section-67894564 {
+    margin-bottom: 16px;
+}
+
+
+.selected-files {
+    margin-top: 10px;
+}
+
+.selected-file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.selected-file span {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.selected-file .remove-file {
+    background-color: transparent;
+
+    color: #ff0000;
+    border: none;
+    cursor: pointer;
+    padding: 2px 8px;
+}
+
+.selected-file .remove-file i {
+    pointer-events: none; /* This ensures the icon doesn't interfere with the button's click event */
+}

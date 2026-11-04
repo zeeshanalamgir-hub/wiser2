@@ -1,0 +1,165 @@
+.sor-card-7668 .sor-card-7668-title {
+    font-size: 22px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+
+
+.sor-card-7668-option-ic-outer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+    margin-top: 25px;
+
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.sor-card-7668-option-ic-outer .sor-card-7668-option-ic-item {
+    width: calc(33.33% - 10px);
+    /* Adjust item width with margin */
+
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+
+}
+
+.sor-card-7668-list-ic-outer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.sor-card-7668-list-ic-outer .sor-card-7668-list-ic-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: 'Afacad';
+    /* font-weight: 600; */
+    font-size: 18px;
+}
+
+
+
+.sor-card-7668-profile-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.sor-card-7668-profile-outer .profile-image-outer {
+    width: 32%;
+    position: relative;
+}
+
+.sor-card-7668-profile-outer .profile-image-outer .img-65436547543 {
+    width: 100%;
+    padding-bottom: 100%;
+    /* background: red; */
+    border-radius: 1000px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #003F45;
+}
+
+.sor-card-7668-profile-outer .profile-image-outer .online-circle-54325643 {
+    width: 12px;
+    height: 12px;
+    border-radius: 20px;
+    background: #CACACA;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    ;
+}
+
+.sor-card-7668-profile-outer .sor-card-7668-profile-title {
+    color: #000000;
+}
+
+.sor-card-7668-profile-outer .sor-card-7668-profile-labels {
+    color: rgba(0, 0, 0, 1);
+}
+
+.sor-card-7668-profile-outer .sor-card-7668-profile-buttons {
+
+    height: 50px;
+    width: 55%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.sor-card-7668-profile-buttons.dark-6789578 {
+    background: #003F45;
+}
+
+.sor-card-7668-profile-buttons.light-6789578 {
+    background: #00C535;
+}
+
+
+.sor-card-7668-profile-outer .sor-card-7668-profile-buttons .ab-text-6789678 {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.sor-card-7668-profile-outer .sor-card-7668-profile-buttons .ab-img-6789678 {
+    height: 20px;
+    ;
+}
+
+.sor-card-7668 .link-outer-67895768 {
+    border-radius: 6px;
+    width: 100%;
+    height: 40px;
+    color: #00C535;
+    background: #E9E9E9;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    padding: 8px;
+}
+
+.sor-card-7668 .link-outer-67895768 span{
+    width: 100%;
+    overflow: hidden;
+}
+
+.sor-card-7668 .link-copy-67895768 {
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.sor-card-7668 .link-copy-67895768 .copy-tag-78906 {
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.disable-bid-now-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+
+}

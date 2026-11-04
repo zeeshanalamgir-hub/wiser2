@@ -1,0 +1,194 @@
+/*--------------------------------------------------------------
+# Footer-block
+--------------------------------------------------------------*/
+.footer-wrapper{
+    padding: 0 100px;
+    @media only screen and (max-width: 1400px) {
+        padding: 0 40px;
+    }
+    @media only screen and (max-width: 991px) {
+        padding: 0 20px;
+    }
+    @media only screen and (max-width: 575px) {
+        padding: 0;
+    }
+    &.open{
+        .footer-toggle{
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba($white, .1);
+        }
+        .right-icon{
+            &::before{
+                -webkit-transform: translate(-50%, -50%) rotate(90deg);
+                -ms-transform: translate(-50%, -50%) rotate(90deg);
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+        }
+        .footer-bottom-area{
+            display: block;
+        }
+    }
+}
+.footer-toggle{
+    color: $white;
+    cursor: pointer;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+    border-bottom: 1px solid transparent;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-weight: 500;
+    .right-icon{
+      display: block;
+      width: 35px;
+      height: 35px;
+      position: relative;
+      left: 0;
+      &::before,
+      &::after{
+        position: absolute;
+        content: '';
+        background: $white;
+        -webkit-transition: all ease 0.3s;
+        -moz-transition: all ease 0.3s;
+        transition: all ease 0.3s;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+      &::before{
+        width: 2px;
+        height: 14px;
+        top: 50%;
+        left: 50%;
+      }
+      &::after{
+        width: 14px;
+        height: 2px;
+        top: 50%;
+        left: 50%;
+      }
+    }
+}
+.footer-bottom-area{
+    padding: 40px 0;
+    display: none;
+}
+.footer-widget{
+    .title{
+        color: $white;
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    p{
+        font-size: 14px;
+        color: $white;
+    }
+}
+.footer-links{
+    li{
+        color: $white;
+        font-size: 14px;
+        padding-bottom: 8px;
+        padding-left: 25px;
+        position: relative;
+        transition: all 0.5s;
+        &:hover{
+            color: $text--base;
+            margin-left: 5px;
+            &::before{
+                color: $text--base;
+            }
+        }
+        &::before{
+            position: absolute;
+            content: "\f101";
+            font-family: 'Line Awesome Free';
+            top: 0;
+            left: 0;
+            color: $white;
+            font-size: 14px;
+            font-weight: 900;
+            transition: all 0.5s;
+        }
+        @media only screen and (max-width: 575px) {
+            font-size: 12px;
+        }
+    }
+}
+.subscribe-form{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    input{
+        padding: 10px 25px;
+        width: calc(100% - 55px);
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 3px 0 0 3px;
+        -webkit-border-radius: 3px 0 0 3px;
+        -moz-border-radius: 3px 0 0 3px;
+        -ms-border-radius: 3px 0 0 3px;
+        -o-border-radius: 3px 0 0 3px;
+        min-height: 50px;
+    }
+    button{
+        width: 55px;
+        background-color: $bg--base;
+        color: $white;
+        border-radius: 0 3px 3px 0;
+        -webkit-border-radius: 0 3px 3px 0;
+        -moz-border-radius: 0 3px 3px 0;
+        -ms-border-radius: 0 3px 3px 0;
+        -o-border-radius: 0 3px 3px 0;
+    }
+}
+.footer-social{
+    @media only screen and (max-width: 575px) {
+        margin-top: 15px;
+    }
+    li{
+        display: inline-block;
+        a{
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            display: inline-block;
+            text-align: center;
+            border: 2px solid rgba($white, .1);
+            border-radius: 50%;
+            color: $white;
+            font-size: 12px;
+            transition: all 0.3s;
+            &:hover,
+            &.active{
+                background-color: $bg--base;
+            }
+        }
+    }
+    li+li{
+        margin-left: 10px;
+    }
+}
+.copyright-area{
+    background-color: $section--bg;
+    border-top: 1px solid rgba($white, .1);
+    padding: 15px 0;
+    @media only screen and (max-width: 575px) {
+        display: block !important;
+        text-align: center;
+    }
+}
+.copyright{
+    p{
+        margin-bottom: 0;
+        color: $white;
+        font-size: 13px;
+        text-transform: uppercase;
+        @media only screen and (max-width: 575px) {
+            font-size: 12px;
+        }
+    }
+}
