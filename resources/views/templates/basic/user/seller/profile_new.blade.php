@@ -2309,7 +2309,7 @@
             for (let i = 0; i < newexskills_arr.length; i++) {
                 button_html += '<button type="button" onclick="unselectnewskill(' + newexskills_arr[i] +
                     ')" id="newskill_btn' + newexskills_arr[i] + '" value="' + exskills_arr[i] +
-                    '" class="btn gray ft-small apply-btn fs-sm rounded mt-1">' + newexskills_name[i] +
+                    '" class="btn gray ft-small apply-btn fs-sm rounded mt-1" style="background:rgb(207, 217, 218)">' + newexskills_name[i] +
                     ' <i class="fa fa-times"></i></button>&nbsp;<input type="hidden" name="newskills[]" id="newjob_skills' +
                     newexskills_arr[i] + '" value="' + newskills_name[i] + '"/>';
 
@@ -2420,7 +2420,7 @@
                     onclick="unselectnewskill(${newskills_arr[i]})"
                     id="newskill_btn${newskills_arr[i]}"
                     value="${newskills_arr[i]}"
-                    class="btn gray ft-small apply-btn fs-sm rounded mt-1">
+                    class="btn gray ft-small apply-btn fs-sm rounded mt-1" style="background:rgb(207, 217, 218)">
                     ${newskills_name[i]} <i class="fa fa-times"></i>
                 </button>
                 <input type="hidden" name="newskills[]" value="${newskills_arr[i]}">

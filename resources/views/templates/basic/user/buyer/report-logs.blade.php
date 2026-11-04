@@ -78,10 +78,29 @@
                                     <td class="text-nowrap">
                                         ${{ getAmount($transaction->charge) }}
                                     </td>
-
-                                    <td class="text-nowrap" style="min-width: 140px;">
-                                        ${{ getAmount($transaction->post_balance) }}
-                                    </td>
+                                    
+                                    @if($transaction?->booking?->booking_type == 'service'
+                                        && $transaction->user_id == $transaction->booking->buyer_id
+                                        && $transaction->trx_type == '-'
+                                        && $transaction->work_id)
+                                        @php
+                                            $heldAmount = $transaction->booking->amount + $transaction->booking->buyer_service_fee;
+                                            $releasedBefore = \App\Models\Transaction::where('booking_id', $transaction->booking_id)
+                                                ->where('user_id', $transaction->user_id)
+                                                ->where('details', 'like', 'Payment for %')
+                                                ->whereNotNull('work_id')
+                                                ->where('work_id', '!=', $transaction->work_id)
+                                                ->where('id', '<', $transaction->id)
+                                                ->sum('amount');
+                                        @endphp
+                                        <td class="text-nowrap" style="min-width: 140px;">
+                                            ${{ getAmount($transaction->post_balance + $heldAmount - $releasedBefore - $transaction->amount) }}
+                                        </td>
+                                    @else
+                                        <td class="text-nowrap" style="min-width: 140px;">
+                                            ${{ getAmount($transaction->post_balance) }}
+                                        </td>
+                                    @endif
 
                                     <td>
                                         {{ __($transaction->details) }}

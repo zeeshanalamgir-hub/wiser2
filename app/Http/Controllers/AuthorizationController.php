@@ -129,7 +129,7 @@ class AuthorizationController extends Controller
             'email_verified_code' => 'required'
         ]);
         $user = Auth::user();
-        if ($user->ev_code == $request->email_verified_code) {
+        if ($user && $user->ev_code == $request->email_verified_code) {
             $user->ev = 1;
             $user->ver_code = null;
             $user->ver_code_send_at = null;

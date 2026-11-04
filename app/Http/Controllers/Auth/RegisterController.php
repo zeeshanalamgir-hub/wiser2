@@ -318,6 +318,7 @@ class RegisterController extends Controller
             $addservices->normal_services = $membership[0]->normal_services;
             $addservices->priority_services = $membership[0]->priority_services;
             $addservices->featured_services = $membership[0]->featured_services;
+            $addservices->featured_job_bids = $membership[0]->featuredjobquotes;
             $addservices->save();
 
             $transaction_arr[] = [

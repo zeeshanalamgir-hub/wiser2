@@ -1139,7 +1139,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $pageTitle = "Transaction Log";
         $emptyMessage = "No data found";
-        $transactions = Transaction::where('user_id', $user->id)->orderby('created_at', 'desc')->paginate(getPaginate());
+        $transactions = Transaction::where('user_id', $user->id)->with('booking')->orderby('created_at', 'desc')->paginate(getPaginate());
         $bidsLog = BidsLog::where('user_id', $user->id)->orderby('created_at', 'desc')->paginate(getPaginate());
         $breadcrumbs = [
             ['title' => '<i class="fa-solid fa-house fs-14"></i>', 'url' => route('user.buyer.dashboard')],
