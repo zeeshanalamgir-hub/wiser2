@@ -205,4 +205,6 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
+    'processing_fee' => 2.5, // Default to 2.5%
+
 ];

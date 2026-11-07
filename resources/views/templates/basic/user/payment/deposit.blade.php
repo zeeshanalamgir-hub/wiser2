@@ -92,7 +92,7 @@
             const percentCharge = parseFloat(selectedInput.data('percent_charge'));
             const baseSymbol = selectedInput.data('base_symbol');
 
-            const depositCharge = `Charge: ${fixCharge} ${baseSymbol} ${(percentCharge > 0 ? `+ ${percentCharge}%` : '')}`;
+            const depositCharge = `${(percentCharge > 0 ? `${percentCharge}%` : '')}`;
             $('.depositCharge').text(depositCharge);
 
             const amountInput = parseFloat($('.depositAmount').val()) || 0;

@@ -98,13 +98,13 @@
     $('.depositLimit').text(depositLimit);
 
     // Display percent first, then fixed
-    const depositCharge = `Charge: ${percentCharge > 0 ? percentCharge + '% + ' : ''} ${baseSymbol}${fixCharge}`;
+    const depositCharge = `${percentCharge > 0 ? percentCharge + '%' : ''}`;
     $('.depositCharge').text(depositCharge);
 
     // Update total calculation: percent first, then fixed
     const amountInput = parseFloat($('.depositAmount').val()) || 0;
     const percentFee = (amountInput * percentCharge) / 100;
-    const total = amountInput + percentFee + fixCharge; // percentFee pehle add, phir fixCharge
+    const total = amountInput + percentFee; // percentFee pehle add, phir fixCharge
 
     $('.totalAmount').text(`${total.toFixed(2)} ${baseSymbol}`);
 

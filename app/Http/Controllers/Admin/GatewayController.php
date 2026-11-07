@@ -66,7 +66,7 @@ class GatewayController extends Controller
                 return back()->withNotify($notify);
             }
         }
-        
+
         $gateway->alias = $request->alias;
         $gateway->gateway_parameters = json_encode($parameters);
         $gateway->image = $filename;

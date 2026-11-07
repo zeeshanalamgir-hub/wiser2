@@ -138,7 +138,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 d-none">
                                                 <div class="card border--primary mt-2">
                                                     <h5 class="card-header bg--primary">@lang('Charge')</h5>
                                                     <div class="card-body">
@@ -154,7 +154,8 @@
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">%</div>
                                                             </div>
-                                                            <input type="text" class="form-control" placeholder="0" name="currency[{{ $currencyIdx }}][percent_charge]" value="{{ getAmount($gatewayCurrency->percent_charge) }}" required/>
+                                                            {{-- <input type="text" class="form-control" placeholder="0" name="currency[{{ $currencyIdx }}][percent_charge]" value="{{ getAmount($gatewayCurrency->percent_charge) }}" required/> --}}
+                                                            <input type="text" class="form-control" placeholder="0" name="currency[{{ $currencyIdx }}][percent_charge]" value="{{ getAmount(config('app.processing_fee')) }}" required/>
                                                         </div>
                                                     </div>
                                                 </div>
