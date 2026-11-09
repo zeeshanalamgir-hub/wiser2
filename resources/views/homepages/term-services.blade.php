@@ -95,7 +95,7 @@
                                                                     </h2>
 
                                                                     <div id="collapse-{{ $detail->id }}"
-                                                                        class="accordion-collapse collapse {{ $detailIndex == 0 ? 'show' : '' }}"
+                                                                        class="accordion-collapse collapse {{ $detailIndex == 0 ? '' : '' }}"
                                                                         data-bs-parent="#accordion-{{ $term->id }}">
 
                                                                         <div class="accordion-body">
