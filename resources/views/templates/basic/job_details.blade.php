@@ -223,15 +223,13 @@
                 @php
                 $user = $buyerProfile['user'];
                 $imagePath = $user->image;
-
-                $imageExists = !empty($imagePath) && Storage::exists($imagePath);
             @endphp
 
             <a class="text-decoration-none"
             style="display:flex;justify-content:center;"
             href="{{ route('buyerprofile', [slug(optional($user)->username), encrypt(optional($user)->id)]) }}">
 
-                @if ($imageExists)
+                @if ($user->image)
                     <img src="{{ Storage::url($imagePath) }}"
                         alt="@lang('Profile Image')"
                         class="rounded-circle me-2"

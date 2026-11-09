@@ -99,7 +99,7 @@ class BookingController extends Controller
 
         $platformFee = $usermembership?->service_platform_fee ?? 0;
         $user = Auth::user();
-        
+
         return view($this->activeTemplate . 'service_booking', compact(
             'chats',
             'sid',
@@ -150,7 +150,7 @@ class BookingController extends Controller
     }
 
     // public function serviceBooked(Request $request)
-    // {  
+    // {
     //     $request->validate([
     //         'serviceId' => 'required|exists:services,id',
     //         'qty' => 'required|min:1|max:30',
@@ -240,7 +240,7 @@ class BookingController extends Controller
 
     //     $serviceUser = User::where('id', $service->user_id)->first();
     //     notify($serviceUser, 'SERVICE_BOOKING', [
-    //         'order_number' => $booking->order_number, 
+    //         'order_number' => $booking->order_number,
     //         'amount' => getAmount($booking->amount),
     //         'currency' => $general->cur_text,
     //     ]);
@@ -290,9 +290,9 @@ class BookingController extends Controller
     //     $booking->discount = $discount;
     //     $booking->order_number = getTrx();
     //     $booking->extra_service = $extraService;
-    //     $booking->status = 0; 
+    //     $booking->status = 0;
     //     $booking->updated_at = Carbon::now();
-    //     $booking->status_updated_at = Carbon::now(); 
+    //     $booking->status_updated_at = Carbon::now();
     //     $booking->save();
     //     session()->put('booking',$booking->order_number);
     //     return back();
@@ -476,7 +476,7 @@ class BookingController extends Controller
             $mail->isHTML(true);
             $mail->Subject = ' Service Booking.';
             $contentBody = view('Emails/Service/servicebook', compact('emailuserservice', 'booker'))->render();
-            // $mail->Body    = $user->ev_code; 
+            // $mail->Body    = $user->ev_code;
             $mail->Body = $contentBody;
 
             // $mail->AltBody = plain text version of email body;
@@ -597,11 +597,11 @@ class BookingController extends Controller
         session()->put('Track', $data->trx);
         return redirect()->route('user.deposit.preview');
     }
-    
+
     public function confirmBooking(Request $request)
     {
         $service_detail_id = decrypt($request->input('service_detail_id'));
-        
+
         $request->merge([
             'service_detail_id' => $service_detail_id
         ]);
@@ -677,7 +677,7 @@ class BookingController extends Controller
         // You can store the temp booking in session if needed
         $platformFee = $usermembership?->service_platform_fee ?? 0;
         $user = Auth::user();
-        
+
         return view($this->activeTemplate . 'service_billing', [
             'service' => $service,
             'package' => $package,
@@ -697,7 +697,7 @@ class BookingController extends Controller
             'quantity' => $quantity,
             'extra_services' => $extra_services,
             'Subtotal' => $Subtotal,
-            'service_fee' => $service_fee, //its percentage 
+            'service_fee' => $service_fee, //its percentage
             'serviceFee' => $serviceFee, // its actual amount
             'basePrice' => $basePrice,
             'user' => $user,

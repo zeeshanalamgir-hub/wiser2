@@ -392,19 +392,19 @@
 
             <!-- Short Profile  -->
             <div class="p-4 mt-3 shadow-sm border rounded-2 bg-white text-center">
-                @if (!is_null($user?->image))
+                @if (!is_null($service->user?->image))
                     <div class="d-flex justify-content-center">
                         <img class="rounded-circle border border-secondary img-fluid"
-                            alt="{{ $user['username'] ?? 'Seller' }}"
-                            src="{{ $user['image'] ? Storage::url($user->image) : asset('assets/images/default-profile.png') }}"
+                            alt="{{ $service->user->username ?? 'Seller' }}"
+                            src="{{ $service->user->image ? Storage::url($service->user->image) : asset('assets/images/default-profile.png') }}"
                             style="width: 80px;height:80px;object-fit: cover;">
                     </div>
                 @else
                     <div class="d-flex justify-content-center">
                         <div class="rounded-circle border border-secondary text-white bg-dgreen d-flex justify-content-center align-items-center fw-bold"
                             style="height:80px;width:80px;font-size:20px">
-                            {{ strtoupper(substr($user->firstname ?? 'A', 0, 1)) }}
-                            {{ strtoupper(substr($user->lastname ?? 'A', 0, 1)) }}
+                            {{ strtoupper(substr($service->user->firstname ?? 'A', 0, 1)) }}
+                            {{ strtoupper(substr($service->user->lastname ?? 'A', 0, 1)) }}
                         </div>
                     </div>
                 @endif

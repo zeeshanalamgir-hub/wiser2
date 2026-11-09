@@ -67,18 +67,44 @@ class UserController extends Controller
         //     ->where('seller_id', $currentUserId)
         //     ->where('status', '!=', 7)
         //     ->get()
-        
+
         // 1. Job Disputes using Eloquent
-        $jobDisputes = Jobdisputebid::where('seller_id', $currentUserId)
-            ->get()
-            ->map(function ($dispute) {
-                $dispute->dispute_type = 'job';
-                $dispute->booking_order = $dispute->booking->order_number ?? null;
-                $dispute->booking_status = $dispute->booking->status ?? null;
-                $dispute->booking_date = $dispute->booking->created_at ?? null;
-                $dispute->job_title = $dispute->job->title ?? null;
-                return $dispute;
-            });
+        // $jobDisputes = Jobdisputebid::where('seller_id', $currentUserId)
+        //     ->join('jobs', 'job_dispute_bid.job_id', '=', 'jobs.id')
+        //     ->get()
+        //     ->map(function ($dispute) {
+        //         dd($dispute->job);
+        //         $dispute->dispute_type = 'job';
+        //         $dispute->booking_order = $dispute->booking->order_number ?? null;
+        //         $dispute->booking_status = $dispute->booking->status ?? null;
+        //         $dispute->booking_date = $dispute->booking->created_at ?? null;
+        //         $dispute->job_title = $dispute->job->title ?? null;
+        //         return $dispute;
+        //     });
+        //     dd($jobDisputes);
+
+        $jobDisputes = DB::table('job_dispute_bid')
+            ->joinSub(
+                DB::table('bookings')
+                    ->select('job_id', 'order_number', 'status', 'created_at')
+                    ->groupBy('job_id')
+                    ->orderBy('created_at', 'desc'),
+                'latest_bookings',
+                'job_dispute_bid.job_id',
+                '=',
+                'latest_bookings.job_id'
+            )
+            ->join('jobs', 'job_dispute_bid.job_id', '=', 'jobs.id')
+            ->where('job_dispute_bid.seller_id', '=', $currentUserId)
+            ->select(
+                'job_dispute_bid.*',
+                'latest_bookings.order_number as booking_order',
+                'latest_bookings.status as booking_status',
+                'latest_bookings.created_at as booking_date',
+                'jobs.title as job_title',
+                DB::raw("'job' as dispute_type")
+            )
+            ->get();
 
         // 2. Service Disputes using Eloquent
         $serviceDisputes = Servicedisputedata::with(['service', 'booking'])

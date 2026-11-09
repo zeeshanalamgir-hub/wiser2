@@ -25,11 +25,11 @@
                                 </li>
                                 @if ($dispute->booking_status == 4)
                                     <li class="mt-2 mt-sm-0">
-                                        <span class="bg-danger text-white px-2 py-1 fs-12 rounded-1">Refund</span>
+                                        <span class="bg-danger text-white px-2 py-1 fs-12 rounded-1 ms-0 ms-sm-2">Refund</span>
                                     </li>
                                 @elseif ($dispute->booking_status == 3)
                                     <li class="mt-2 mt-sm-0">
-                                        <span class="bg-green text-white px-2 py-1 fs-12 rounded-1">Paid</span>
+                                        <span class="text-success ms-0 ms-sm-2 bg-green text-white px-2 py-1 fs-12 rounded-1">Paid</span>
                                     </li>
                                 @endif
                             @endif

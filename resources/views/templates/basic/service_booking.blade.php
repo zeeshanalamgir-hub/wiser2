@@ -19,7 +19,7 @@
     $convertedPrice = $helpers->convert_to_currency(Session::get('currency', 'USD'), $servicePriceUSD);
     $displayPrice = number_format($convertedPrice, 2);
     $symbol = Session::get('currency_symbol', '$');
-    
+
     // Platform fee
     $platformFee = (float)($platformFee ?? 4.00);
 @endphp
@@ -40,10 +40,10 @@
             </p>
             <!--Breadcrumbs End-->
         </div>
-        
+
         <!-- Right Section-->
         <div class="col-lg-4 order-second order-lg-last">
-            
+
             <form method="POST" action="{{ route('user.service.booking.confirm') }}" id="bookingForm">
                 @csrf
                 <input type="hidden" name="discount" id="formDiscount" value="0">
@@ -117,7 +117,7 @@
                         Select Quantity
                         <div class="input-group float-end" style="width: 100px;">
                             <button type="button" class="btn btn-sm btn-outline-secondary quantity-minus">-</button>
-                            <input type="text" class="form-control text-center quantity-input fw-bold fs-14" 
+                            <input type="text" class="form-control text-center quantity-input fw-bold fs-14"
                                    id="quantity" value="1" name="quantity" style="padding: 0;">
                             <button type="button" class="btn btn-sm btn-outline-secondary quantity-plus">+</button>
                         </div>
@@ -131,7 +131,7 @@
 
                     <!-- Subtotal -->
                     <div class="w-100 fw-semibold mt-1">
-                        Subtotal 
+                        Subtotal
                         <span class="float-end" id="subtotalAmount">
                             {{ $symbol }}0.00
                         </span>
@@ -145,7 +145,7 @@
                             <li class="text-muted">No extra services added</li>
                         </ul>
                         <div class="w-100 fw-semibold mt-2 d-none" id="extra-services-total-row">
-                            Extra Services Total 
+                            Extra Services Total
                             <span class="float-end" id="extra-services-total-amount">{{ $symbol }}0.00</span>
                         </div>
                     </div>
@@ -157,22 +157,22 @@
                             <li class="text-muted">No add-ons selected</li>
                         </ul>
                         <div class="w-100 fw-semibold mt-2 d-none" id="addons-total-row">
-                            Add-ons Total 
+                            Add-ons Total
                             <span class="float-end" id="addons-total-amount">{{ $symbol }}0.00</span>
                         </div>
                     </div>
 
                     <!-- Discount Row (Show when coupon applied) -->
                     <div class="w-100 fw-semibold mt-1 d-none" id="discount-row">
-                        Discount 
+                        Discount
                         <span class="float-end text-success" id="discountAmount">-{{ $symbol }}0.00</span>
                     </div>
 
                     <!-- Service Fee -->
                     <div class="w-100 fw-semibold mt-1">
-                        Service Fee 
+                        Service Fee
                         <span class="float-end">
-                            {{ $platformFee }}% 
+                            {{ $platformFee }}%
                             (<span id="platformFeeAmount">{{ $symbol }}0.00</span>)
                         </span>
                         <input type="hidden" name="serviceFee" value="{{ $platformFee }}">
@@ -181,7 +181,7 @@
 
                     <!-- Total -->
                     <div class="w-100 fw-semibold mt-1">
-                        Total 
+                        Total
                         <span class="float-end" id="totalPrice">{{ $symbol }}0.00</span>
                     </div>
                     <input type="hidden" name="total" id="totalHidden" value="0">
@@ -197,7 +197,7 @@
                     <div class="w-100 mt-3" id="discount">
                         <label for="couponCode" class="form-label">Coupon Code</label>
                         <div class="input-group">
-                            <input type="text" class="form-control fs-14" name="coupon" id="couponCode" 
+                            <input type="text" class="form-control fs-14" name="coupon" id="couponCode"
                                    placeholder="Enter coupon code">
                             <button type="button" class="btn btn-outline-secondary" id="applyCoupon">Apply</button>
                         </div>
@@ -208,7 +208,7 @@
 
                     <!-- Confirm Button -->
                     <div class="w-100 mt-3">
-                        <button type="submit" class="btn btn-sm btn-success bg-green border-0 w-100 fw-bold" 
+                        <button type="submit" class="btn btn-sm btn-success bg-green border-0 w-100 fw-bold"
                                 id="confirm-btn">
                             Confirm & Pay
                         </button>
@@ -231,9 +231,30 @@
                         <div class="d-flex">
                             <!-- User Avatar -->
                             <div>
-                                <img src="{{ getImage(imagePath()['profile']['user']['path'] . '/' . $service->user->image, null) }}"
+                                {{-- $service?->user?->image ? Storage::url($service?->user?->image) : asset('assets/images/default.png') --}}
+                                {{-- <img src="{{ getImage(imagePath()['profile']['user']['path'] . '/' . $service->user->image, null) }}"
                                     alt="@lang('Profile Image')" class="rounded-circle me-2" width="50" height="50"
-                                    style="border-radius:50% !important;object-fit:cover;">
+                                    style="border-radius:50% !important;object-fit:cover;"> --}}
+
+                                @php
+                                    $user = $service->user;
+                                    $imageExists = !empty($user?->image);
+                                @endphp
+
+                                @if ($imageExists)
+                                    <img src="{{ Storage::url($user->image) }}"
+                                        alt="@lang('Profile Image')"
+                                        class="rounded-circle me-2"
+                                        width="50"
+                                        height="50"
+                                        style="border-radius:50% !important;object-fit:cover;">
+                                @else
+                                    <div class="rounded-circle border border-secondary text-white bg-dgreen d-flex justify-content-center align-items-center fw-bold me-2"
+                                        style="height:50px;width:50px;font-size:16px;flex-shrink:0;">
+                                        {{ strtoupper(substr($user?->firstname ?? 'A', 0, 1)) }}{{ strtoupper(substr($user?->lastname ?? 'A', 0, 1)) }}
+                                    </div>
+                                @endif
+
                             </div>
 
                             <!-- User Info -->
@@ -286,7 +307,7 @@
                         @endphp
                         <div class="px-4 py-3 mb-3 bg-lgreen3 rounded-2">
                             <input type="checkbox" name="selected_addons[]" value="{{ $addon->id }}"
-                                class="form-check-input float-end addon-checkbox" 
+                                class="form-check-input float-end addon-checkbox"
                                 data-price="{{ $addonPrice }}"
                                 data-display-price="{{ $addonDisplayPrice }}"
                                 data-days="{{ $addon->delivery_time }}">
@@ -327,7 +348,7 @@
                                 placeholder="Enter title" required>
                         </div>
                         <div class="col-8 col-md-4 mt-1">
-                            <input type="number" class="form-control fs-14 extra-service-price" 
+                            <input type="number" class="form-control fs-14 extra-service-price"
                                    placeholder="Price" min="0" step="0.01" required>
                         </div>
                         <div class="col-4 col-md-1 mt-1">
@@ -349,12 +370,12 @@ $(document).ready(function() {
     const currencySymbol = '{{ $symbol }}';
     const platformFee = parseFloat('{{ $platformFee }}') || 4.00;
     const servicePrice = parseFloat('{{ $convertedPrice }}') || 0;
-    
+
     // Coupon variables
     let couponType = null;
     let couponValue = 0;
     let discountAmount = 0;
-    
+
     // Initialize
     updateAllCalculations();
     updateExtraServicesList();
@@ -395,7 +416,7 @@ $(document).ready(function() {
                     <input type="text" class="form-control fs-14 extra-service-title" placeholder="Enter title" required>
                 </div>
                 <div class="col-8 col-md-4 mt-1">
-                    <input type="number" class="form-control fs-14 extra-service-price" 
+                    <input type="number" class="form-control fs-14 extra-service-price"
                            placeholder="Price" min="0" step="0.01" required>
                 </div>
                 <div class="col-4 col-md-1 mt-1">
@@ -440,14 +461,14 @@ $(document).ready(function() {
                         // Store coupon details
                         couponType = response.type;
                         couponValue = parseFloat(response.value);
-                        
+
                         $('#formCoupan').val(couponCode);
                         $('#couponError').text('').hide();
                         $('#couponSuccess').text(response.message).show();
-                        
+
                         // Update calculations with coupon
                         updateAllCalculations();
-                        
+
                         // Show discount message
                         showDiscountMessage();
                     } else {
@@ -471,7 +492,7 @@ $(document).ready(function() {
     // Form submission
     $('#bookingForm').on('submit', function(e) {
         e.preventDefault();
-        
+
         // Collect addon IDs
         let addonIds = [];
         $('.addon-checkbox:checked').each(function() {
@@ -507,7 +528,7 @@ $(document).ready(function() {
         } else if (couponType === 'percentage') {
             discountText = `${couponValue}% discount applied`;
         }
-        
+
         if (discountText) {
             // Add discount message to UI
             if ($('#discount-message').length === 0) {
@@ -534,32 +555,32 @@ $(document).ready(function() {
         const list = $('#selected-addons-list');
         const totalRow = $('#addons-total-row');
         const totalAmount = $('#addons-total-amount');
-        
+
         list.empty();
-        
+
         let total = 0;
         let hasAddons = false;
-        
+
         $('.addon-checkbox:checked').each(function() {
             hasAddons = true;
             const name = $(this).closest('.rounded-2').find('p.fw-bold').text().trim();
             const price = parseFloat($(this).data('price')) || 0;
             const days = $(this).data('days') || 0;
             const displayPrice = $(this).data('display-price') || price.toFixed(2);
-            
+
             total += price;
-            
+
             list.append(`
                 <li>
-                    <span class="fas fa-check text-green fw-bold float-end"></span> 
-                    ${name} 
+                    <span class="fas fa-check text-green fw-bold float-end"></span>
+                    ${name}
                     <small class="text-muted">
                         (${days > 0 ? `+${days} day${days > 1 ? 's' : ''}, ` : ''}${currencySymbol}${displayPrice})
                     </small>
                 </li>
             `);
         });
-        
+
         if (hasAddons) {
             totalRow.removeClass('d-none');
             totalAmount.text(currencySymbol + total.toFixed(2));
@@ -567,7 +588,7 @@ $(document).ready(function() {
             totalRow.addClass('d-none');
             list.append('<li class="text-muted">No add-ons selected</li>');
         }
-        
+
         return total;
     }
 
@@ -576,31 +597,31 @@ $(document).ready(function() {
         const list = $('#extra-services-list');
         const totalRow = $('#extra-services-total-row');
         const totalAmount = $('#extra-services-total-amount');
-        
+
         list.empty();
-        
+
         let total = 0;
         let hasServices = false;
-        
+
         $('.extra-service-row').each(function() {
             const title = $(this).find('.extra-service-title').val().trim();
             const price = $(this).find('.extra-service-price').val().trim();
             const priceNum = parseFloat(price) || 0;
-            
+
             if (title && priceNum > 0) {
                 hasServices = true;
                 total += priceNum;
-                
+
                 list.append(`
                     <li>
-                        <span class="fas fa-check text-green fw-bold float-end"></span> 
+                        <span class="fas fa-check text-green fw-bold float-end"></span>
                         ${title}
                         <small class="text-muted">(${currencySymbol}${priceNum.toFixed(2)})</small>
                     </li>
                 `);
             }
         });
-        
+
         if (hasServices && total > 0) {
             totalRow.removeClass('d-none');
             totalAmount.text(currencySymbol + total.toFixed(2));
@@ -608,24 +629,24 @@ $(document).ready(function() {
             totalRow.addClass('d-none');
             list.append('<li class="text-muted">No extra services added</li>');
         }
-        
+
         return total;
     }
 
     // Calculate discount amount
     function calculateDiscount(subtotal) {
         if (!couponType || couponValue <= 0) return 0;
-        
+
         let discount = 0;
         if (couponType === 'fixed') {
             discount = couponValue;
         } else if (couponType === 'percentage') {
             discount = (subtotal * couponValue) / 100;
         }
-        
+
         // Discount shouldn't exceed subtotal
         discount = Math.min(discount, subtotal);
-        
+
         return discount;
     }
 
@@ -635,18 +656,18 @@ $(document).ready(function() {
         const serviceSubtotal = servicePrice * quantity;
         const addonsTotal = calculateAddonsTotal();
         const extraServicesTotal = calculateExtraServicesTotal();
-        
+
         // Calculate base amount (before discount)
         const baseAmount = serviceSubtotal + addonsTotal + extraServicesTotal;
         console.log("baseAmount =>",baseAmount);
-        
+
         // Calculate discount
         discountAmount = calculateDiscount(baseAmount);
-        
+
         // Update subtotal (service only)
         $('#subtotalAmount').text(currencySymbol + serviceSubtotal.toFixed(2));
         $('#subtotalHidden').val(serviceSubtotal);
-        
+
         // Show discount row if discount applied
         if (discountAmount > 0) {
             $('#discount-row').removeClass('d-none');
@@ -654,40 +675,40 @@ $(document).ready(function() {
         } else {
             $('#discount-row').addClass('d-none');
         }
-        
+
         // Calculate amount after discount for service fee calculation
         const amountAfterDiscount = baseAmount - discountAmount;
-        
+
         // Calculate service fee on discounted amount
         const serviceFeeAmount = amountAfterDiscount * (platformFee / 100);
         $('#platformFeeAmount').text(currencySymbol + serviceFeeAmount.toFixed(2));
         $('#serviceFeeAmount').val(serviceFeeAmount);
-        
+
         // Calculate total after discount and fee
         const total = amountAfterDiscount + serviceFeeAmount;
-        
+
         // Update total price with discount if applied
         if (discountAmount > 0) {
             // Show original and discounted price
             const originalTotal = baseAmount + serviceFeeAmount;
             $('#totalPrice').html(`
-                <span style="text-decoration: line-through; color: #999; margin-right: 5px;">${currencySymbol}${originalTotal.toFixed(2)}</span> 
+                <span style="text-decoration: line-through; color: #999; margin-right: 5px;">${currencySymbol}${originalTotal.toFixed(2)}</span>
                 ${currencySymbol}${total.toFixed(2)}
             `);
-            
+
             // Update discount hidden field
             $('#formDiscount').val(discountAmount.toFixed(2));
         } else {
             $('#totalPrice').text(currencySymbol + total.toFixed(2));
             $('#formDiscount').val(0);
         }
-        
+
         $('#totalHidden').val(total);
-        
+
         // Update total to pay
         $('#total-with-fee').text(currencySymbol + total.toFixed(2));
         $('#convertedAmount').val(total.toFixed(2));
-        
+
         // Update service quantity for form
         $('#serviceQuantity').val(quantity);
     }
